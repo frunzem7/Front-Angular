@@ -1,0 +1,72 @@
+<mat-card>
+<!--  <div>-->
+<!--    <mat-slide-toggle (change)="toggleEditing($event)" [checked]="editing">-->
+<!--      Enable editing-->
+<!--    </mat-slide-toggle>-->
+<!--  </div>-->
+<!--  <div [ngClass]="{'disabled':!editing}">-->
+    <form [formGroup]="form">
+      <mat-form-field class="display-column">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="first_name" type="text" placeholder="Ex: Alina">
+        <mat-error>
+          {{'Insert valid first name'}}
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="display-column">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" type="text" placeholder="Ex: Vieru">
+        <mat-error>
+          {{'Insert valid last name'}}
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="display-column">
+        <mat-label>Address</mat-label>
+        <textarea matInput></textarea>
+        <input matInput formControlName="address" placeholder="Ex: str. Vasile Lupu 20">
+        <mat-error>
+          {{'Insert valid address'}}
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="display-column">
+        <mat-label>Number Phone</mat-label>
+        <span matPrefix>+373 &nbsp;</span>
+        <input matInput formControlName="number_phone"
+               type="tel"
+               placeholder="Ex: 69-842-572">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error>
+          {{'Insert valid number phone'}}
+        </mat-error>
+      </mat-form-field>
+      <br>
+    </form>
+
+    <div class="control-buttons display-row">
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+        Save
+      </button>
+
+      <button mat-raised-button color="accent" (click)="cancel()">
+        Cancel
+      </button>
+
+<!--      <button  mat-raised-button color="warn" style="background-color: green" (click)="openGreeting()">-->
+<!--        Greeting-->
+<!--      </button>-->
+
+    </div>
+<!--  </div>-->
+</mat-card>
+
+<!--<ng-template #greetingRef>-->
+<!--  <div>-->
+<!--    Hello dear friend-->
+<!--  </div>-->
+<!--</ng-template>-->
