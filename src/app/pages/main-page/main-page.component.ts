@@ -13,7 +13,7 @@ export class MainPageComponent implements OnInit {
   editing: boolean = false;
   mainPage: MainPageDTO = new MainPageDTO();
 
-  // @ViewChild("greetingRef") greetingRef!: TemplateRef<any>;
+  @ViewChild("greetingRef") greetingRef!: TemplateRef<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,33 +27,33 @@ export class MainPageComponent implements OnInit {
 
   initForm(data?: MainPageDTO): void {
     this.form = this.formBuilder.group({
-      firstName: [[data && data.firstName ? data.firstName : ''],
+      firstName: [data && data.firstName ? data.firstName : '',
         [Validators.required, Validators.maxLength(20)]],
-      lastName: [[data && data.lastName ? data.lastName : ''],
+      lastName: [data && data.lastName ? data.lastName : '',
         [Validators.required, Validators.minLength(5)]],
-      address: [[data && data.address ? data.address : ''],
+      address: [data && data.address ? data.address : '',
         [Validators.required]],
-      numberPhone: [[data && data.numberPhone ? data.numberPhone : 0],
+      numberPhone: [data && data.numberPhone ? data.numberPhone : 0,
         [Validators.required]],
     })
   }
 
   mockMethod(): void {
-    this.form?.get('first_name')
+    this.form?.get('firstName')
   }
 
-  // toggleEditing(event: any): boolean {
-  //   this.editing = event.checked;
-  //   return this.editing;
-  // }
+  toggleEditing(event: any): boolean {
+    this.editing = event.checked;
+    return this.editing;
+  }
 
   save(): void {
     this.editing = false;
-    this.mainPage.firstName = this.form.get('first_name')?.value;
-    this.mainPage.lastName = this.form.get('last_name')?.value;
+    this.mainPage.firstName = this.form.get('firstName')?.value;
+    this.mainPage.lastName = this.form.get('lastName')?.value;
     this.mainPage.address = this.form.get('address')?.value;
-    this.mainPage.numberPhone = this.form.get('number_phone')?.value;
-
+    this.mainPage.numberPhone = this.form.get('numberPhone')?.value;
+    console.log(this.form);
     this.mainPageService.save(this.mainPage).subscribe(data => {
       console.log(data);
     });
@@ -61,10 +61,10 @@ export class MainPageComponent implements OnInit {
 
   cancel(): void {
     this.editing = false;
-    this.form.get('first_name')?.setValue(this.mainPage.firstName);
-    this.form.get('last_name')?.setValue(this.mainPage.lastName);
+    this.form.get('firstName')?.setValue(this.mainPage.firstName);
+    this.form.get('lastName')?.setValue(this.mainPage.lastName);
     this.form.get('address')?.setValue(this.mainPage.address);
-    this.form.get('number_phone')?.setValue(this.mainPage.numberPhone);
+    this.form.get('numberPhone')?.setValue(this.mainPage.numberPhone);
   }
 
   getError(controlName: string): string {
@@ -81,7 +81,7 @@ export class MainPageComponent implements OnInit {
     // }
     return 'Please insert valid field!';
   }
-  // openGreeting(): void{
-  //   // let dialogRef = this.dialog.open(this.greetingRef);
-  // }
+  openGreeting(): void{
+    // let dialogRef = this.dialog.open(this.greetingRef);
+  }
 }
